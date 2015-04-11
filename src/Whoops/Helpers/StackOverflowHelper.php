@@ -8,7 +8,7 @@ class StackOverflowHelper implements Helper {
     {
         $encodedMessage = urlencode($errorMessage);
 
-        $url = "/2.2/search?order=desc&sort=activity&intitle=$encodedMessage&site=stackoverflow";
+        $url = "http://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=$encodedMessage&site=stackoverflow";
 
         $response = $this->sendRequest($url);
 
@@ -32,7 +32,6 @@ class StackOverflowHelper implements Helper {
         // Closing
         curl_close($ch);
 
-        // Will dump a beauty json :3
         return $result;
     }
 
