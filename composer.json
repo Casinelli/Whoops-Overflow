@@ -1,5 +1,5 @@
 {
-    "name": "Casinelli/Whoops-Overflow",
+    "name": "casinelli/whoops-overflow",
     "license": "MIT",
     "description": "Errors come directly with solutions from Stack Overflow",
     "keywords": ["library", "error", "handling", "exception", "silex-provider", "whoops", "zf2"],
