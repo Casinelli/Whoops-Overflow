@@ -27,6 +27,9 @@
           <?php $tpl->render($env_details) ?>
         </div>
       </div>
+      <div class="help-container">
+          <?php $tpl->render($help) ?>
+      </div>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.5/ZeroClipboard.min.js"></script>

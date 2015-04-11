@@ -1,10 +1,15 @@
 {
-    "name": "filp/whoops",
+    "name": "Casinelli/Whoops-Overflow",
     "license": "MIT",
-    "description": "php error handling for cool kids",
+    "description": "Errors come directly with solutions from Stack Overflow",
     "keywords": ["library", "error", "handling", "exception", "silex-provider", "whoops", "zf2"],
     "homepage": "https://github.com/filp/whoops",
     "authors": [
+        {
+            "name": "Giovanni Casinelli",
+            "homepage": "https://github.com/Casinelli",
+            "role": "Developer"
+        },
         {
             "name": "Filipe Dobreira",
             "homepage": "https://github.com/filp",

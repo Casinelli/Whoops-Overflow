@@ -11,6 +11,7 @@ use RuntimeException;
 use Whoops\Exception\Formatter;
 use Whoops\Util\Misc;
 use Whoops\Util\TemplateHelper;
+use Whoops\Helpers\StackOverflowHelper;
 
 class PrettyPageHandler extends Handler
 {
@@ -45,6 +46,11 @@ class PrettyPageHandler extends Handler
      * @var bool
      */
     private $handleUnconditionally = false;
+
+    /**
+     * @var bool
+     */
+    private $help = true;
 
     /**
      * @var string
@@ -134,6 +140,18 @@ class PrettyPageHandler extends Handler
             $code = Misc::translateErrorCode($inspector->getException()->getSeverity());
         }
 
+        if ( $this->help() )
+        {
+            $exceptionMessage = $inspector->getException()->getMessage();
+            $helper = new StackOverflowHelper();
+
+            $helpQuestions = $helper->getHelp($exceptionMessage);
+        }
+        else
+        {
+            $helpQuestions = [];
+        }
+
         // List of variables that will be passed to the layout template.
         $vars = array(
             "page_title" => $this->getPageTitle(),
@@ -148,6 +166,7 @@ class PrettyPageHandler extends Handler
             "frame_list"  => $this->getResource("views/frame_list.html.php"),
             "frame_code"  => $this->getResource("views/frame_code.html.php"),
             "env_details" => $this->getResource("views/env_details.html.php"),
+            "help"        => $this->getResource("views/help.html.php"),
 
             "title"          => $this->getPageTitle(),
             "name"           => explode("\\", $inspector->getExceptionName()),
@@ -158,6 +177,7 @@ class PrettyPageHandler extends Handler
             "has_frames"     => !!count($frames),
             "handler"        => $this,
             "handlers"       => $this->getRun()->getHandlers(),
+            "help_questions" => $helpQuestions,
 
             "tables"      => array(
                 "Server/Request Data"   => $_SERVER,
@@ -259,6 +279,20 @@ class PrettyPageHandler extends Handler
         }
 
         $this->handleUnconditionally = (bool) $value;
+    }
+
+    /**
+     * Allows to choose if to get help for exceptions
+     * @param  bool|null $value
+     * @return bool|null
+     */
+    public function help($value = null)
+    {
+        if (func_num_args() == 0) {
+            return $this->help;
+        }
+
+        $this->help = (bool) $value;
     }
 
     /**
