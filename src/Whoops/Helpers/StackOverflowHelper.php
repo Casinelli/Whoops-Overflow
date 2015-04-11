@@ -21,6 +21,8 @@ class StackOverflowHelper implements Helper {
     {
         //  Initiate curl
         $ch = curl_init();
+        // Set any encoding as
+        curl_setopt($ch, CURLOPT_ENCODING, '');
         // Disable SSL verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         // Will return the response, if false it print the response

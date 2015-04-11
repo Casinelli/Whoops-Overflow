@@ -25,10 +25,8 @@
           </header>
           <?php $tpl->render($frame_code) ?>
           <?php $tpl->render($env_details) ?>
-        </div>
-      </div>
-      <div class="help-container">
           <?php $tpl->render($help) ?>
+        </div>
       </div>
     </div>
 

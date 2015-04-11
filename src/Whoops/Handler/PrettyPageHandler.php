@@ -143,9 +143,9 @@ class PrettyPageHandler extends Handler
         if ( $this->help() )
         {
             $exceptionMessage = $inspector->getException()->getMessage();
-            $helper = new StackOverflowHelper();
+            $errorHelper = new StackOverflowHelper();
 
-            $helpQuestions = $helper->getHelp($exceptionMessage);
+            $helpQuestions = $errorHelper->getHelp($exceptionMessage);
         }
         else
         {
